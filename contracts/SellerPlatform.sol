@@ -1,40 +1,62 @@
 pragma solidity ^0.4.6;
 
 contract SellerPlatform {
+    struct ProductInfo {
+        // register, sold, deliver
+        string Status; 
+
+    }
+    //Ref : https://coursetro.com/posts/code/102/Solidity-Mappings-&-Structs-Tutorial
     struct Product {
         string Name;
-        string Company;
-        uint LocationId; // returnm 
-        uint PreviousLocationId; // return 
-        uint Timestamp;
-        string Secret;
-        string status;
-    }
-    
-    // Maintain product history 
-    mapping(uint => Product) Trail;
-    uint8 TrailCount=0;
+        uint Id;
+        ProductInfo ProductInfos;
 
-    function AddNewProduct(string Company, string Name, uint LocationId ,string Secret) {
-        // new product in memory
+    }
+
+    
+    
+    // Maintain product block history 
+    mapping(uint => Product) Products;
+
+    // uint[] public ProductIds;
+
+
+    function CreateProduct(string Name) {
         Product memory newProduct;
         newProduct.Name = Name;
-        newProduct.Company = Company;
-        newProduct.LocationId = LocationId;
-        newProduct.Secret = Secret;
-        newProduct.Timestamp = now;
-        // 
-        if(TrailCount!=0) {
-            newProduct.PreviousLocationId= Trail[TrailCount].LocationId;
-        }
-        Trail[TrailCount] = newProduct;
-        TrailCount++;
-    }
-    function GetTrailCount() returns(uint8) {
-        return TrailCount;
+        newProduct.Id = 1233;
+        // ProductIds.push(newProduct.Id);
+        // product status
+        ProductInfo memory newProductInfo ;
+        newProductInfo.Status = "REGISTER";
+        newProduct.ProductInfos = newProductInfo;
+        Products[newProduct.Id] = newProduct;
     }
 
-    function GetLocation(uint8 TrailNo) returns (string,uint,uint,uint,string) {
-        return (Trail[TrailNo].Name, Trail[TrailNo].LocationId, Trail[TrailNo].PreviousLocationId, Trail[TrailNo].Timestamp,Trail[TrailNo].Secret);
+    // registration of product
+    function sellProduct(uint productId) {
+        var product = Products[productId];
+        // product status
+        ProductInfo memory newProductInfo ;
+        newProductInfo.Status = "SOLD";
+        product.ProductInfos = newProductInfo;
+        Products[product.Id] = product;
+
+    }
+
+    function DeliverProduct(uint productId) {
+         var product = Products[productId];
+        // product status
+        ProductInfo memory  newProductInfo ;
+        newProductInfo.Status = "DELIVER";
+        product.ProductInfos = newProductInfo;
+        Products[product.Id] = product;
+        
+    }
+
+
+    function GetProduct(uint productId) returns (string) {
+        return (Products[productId].Name);
     }
 }

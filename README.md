@@ -4,6 +4,13 @@ Init sample package [ref: https://github.com/trufflesuite/truffle-init-webpack]
     truffle unbox webpack
 
 ## Installation
+Test Server [ref :  https://github.com/trufflesuite/ganache-cli] 
+
+    npm install -g ganache-cli
+To Run test Server
+
+    ganache-cli
+    
 
 Install Truffle globally.
 

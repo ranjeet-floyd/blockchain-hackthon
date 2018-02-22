@@ -84,12 +84,13 @@ window.App = {
       self.setStatus("Error sending coin; see log.");
     });
   },
-  
+
   registerProduct: function() {
     var self = this;
     var productName = document.getElementById("productName").value;
     var productCompany = document.getElementById("productCompany").value;
-    this.setStatus("Initiating register product .....");
+    this.setStatus("0xwcwcvwecwecwcwe");
+    
   }
 };
 

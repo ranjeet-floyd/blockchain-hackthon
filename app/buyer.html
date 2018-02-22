@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Buyer</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <script src="../app.js"></script>
+</head>
+<body>
+  
+  <h2>Rakuten Buyer Blockchain Platform</h2>
+  <!-- <h3>You have <span class="black"><span id="balance"></span> META</span></h3> -->
+  <br> <label for="contractAddress">Contract Address: </label>
+  <input type="text" id="contractAddress" />
+  <br>
+  <br>
+  <button id="createContract" onclick="App.createbuyerContract()"> Create Buyer Contract </button>
+  <br>
+  <br>
+  <h1>Buy Product </h1>
+  <br><label for="sellerContractAddress">Contract Address:</label><input type="text" id="sellerContractAddress" placeholder=" contract Address"></input>
+  <br><label for="productName">Product Name:</label><input type="text" id="productName" placeholder=" apple iphone X"></input>
+ 
+  <br><br><button id="register" onclick="App.buyProduct()">Buy Product</button>
+  <br><br>
+</body>
+</html>

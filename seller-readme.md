@@ -23,7 +23,7 @@ Body:
             "product_id":"test_id",
             "product_price":"test_price",
             "product_info":"test_info",
-            "blocak_address":"test_block"
+            "block_address":"test_block"
         },
         {
             ......
@@ -38,6 +38,6 @@ Body:
     {
         "product_price":"test_price",
         "product_info":"test_info",
-        "blocak_address":"test_block"
+        "block_address":"test_block"
     }
 

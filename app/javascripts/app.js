@@ -83,8 +83,17 @@ window.App = {
       console.log(e);
       self.setStatus("Error sending coin; see log.");
     });
+  },
+  
+  registerProduct: function() {
+    var self = this;
+    var productName = document.getElementById("productName").value;
+    var productCompany = document.getElementById("productCompany").value;
+    this.setStatus("Initiating register product .....");
   }
 };
+
+  
 
 window.addEventListener('load', function() {
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)

@@ -1,5 +1,9 @@
 # Let build chain 
 
+    Application for tracking product in secure and tamper free way. 
+    Smart contract for application users.
+
+
 Init sample package [ref: https://github.com/trufflesuite/truffle-init-webpack] 
     truffle unbox webpack
 
@@ -46,6 +50,9 @@ Commands:
   Build for production: npm run build
 ```
 
+Install Solidity Compiler
+	
+	npm install -g solc
 
 ## Useful links
     Token 

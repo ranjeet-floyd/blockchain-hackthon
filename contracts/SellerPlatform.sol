@@ -8,6 +8,7 @@ contract SellerPlatform {
         uint Id;
         string Status;
         uint Quantity;
+        uint256 Timestamp;
     }
 
     
@@ -26,33 +27,35 @@ contract SellerPlatform {
      uint8 ProductDeliverCount=0;
 
 
-    function RegisterProduct(string Name) constant returns(string, uint, string) {
+    function RegisterProduct(string Name, uint Quantity)  returns(string, uint, string , uint, uint) {
         Product memory newProduct;
         newProduct.Name = Name;
-        newProduct.Quantity = 1;
+        newProduct.Quantity = Quantity;
         newProduct.Status = "REGISTERED";
-        newProduct.Id = ProductRegCount;//now();
-        ProductReg[ProductRegCount] = newProduct;    
+        newProduct.Id = ProductRegCount;
+        newProduct.Timestamp = block.timestamp;
+        ProductReg[newProduct.Id] = newProduct;    
         ProductRegCount++;
-        return (newProduct.Name,newProduct.Id,newProduct.Status);
+        return (newProduct.Name,newProduct.Id,newProduct.Status, block.number,ProductRegCount);
     }
 
     // registration of product
-    function sellProduct(uint ProductId) constant returns(string) {
+    function sellProduct(uint ProductId)  returns(string, uint, string , uint, uint) {
         var newProduct = ProductReg[ProductId];
         newProduct.Status = "SOLD";
         ProductSold[ProductSoldCount] = newProduct;
         ProductSoldCount++;
-        return newProduct.Name;
+        return (newProduct.Name,newProduct.Id,newProduct.Status, block.number,ProductSoldCount);
 
     }
 
-    function DeliverProduct(uint ProductId) {
+    function DeliverProduct(uint ProductId) returns(string, uint, string , uint, uint) {
         var newProduct = ProductReg[ProductId];
         newProduct.Status = "DELIVERED";
-        ProductReg[ProductDeliverCount] = newProduct;
+        ProductDelivered[ProductDeliverCount] = newProduct;
         ProductDeliverCount++;
-        
+        return (newProduct.Name,newProduct.Id,newProduct.Status, block.number,ProductDeliverCount);
+    
     }
 
     function GetRegProductCount() constant returns(uint) {
@@ -69,7 +72,7 @@ contract SellerPlatform {
         return ProductDeliverCount;
         
     }
-    function GetProduct(uint ProductId) constant returns (string, uint) {
-        return (ProductReg[ProductId].Name, ProductReg[ProductId].Id);
+    function GetProduct(uint ProductId) constant returns (string) {
+        return ProductReg[ProductId].Name;
     }
 }

@@ -75,6 +75,7 @@ window.App = {
   },
 
   createSellerContract:  function(){
+    var self = this;
 
     // optinal param, txt param ,call back function
     var sellerplatform = sellerplatformContract.new(
@@ -109,9 +110,27 @@ window.App = {
 
     deployedSellerplatformContract.RegisterProduct(productName, quantity, function(error, x) {
       console.log(x);
-      document.getElementById("count").value = x;
+    document.getElementById("count").value = x;
+     var  getTransaction  = x;
+      web3.eth.getTransaction(getTransaction, function(error,data) {
+        console.log(data);
+        alert(JSON.stringify(data));
+  
+    });
+
     });
 },
+
+GetEtherBlock: function(blockHash) {
+  var self = this;
+  // var blockHash = document.getElementById("count").value;
+  web3.eth.getBlock(blockHash,  returnTransactionObjects, function(error,data) {
+      console.log(data);
+      alert(data);
+
+  });
+
+ },
 
 deliverProduct: function(){
   var contractAddress = document.getElementById("sellerContractAddress").value;

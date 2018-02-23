@@ -8,13 +8,12 @@ contract BuyerPlatform {
         uint Id;
         string Status;
         uint Quantity;
+        uint256 Timestamp;
     }
-
-
     
     // Maintain product block history 
-    mapping(uint => Product) ProductBought;
-    uint8 ProductBoughtCount=0;
+    mapping(uint => Product) ProductBrought;
+    uint8 ProductBroughtCount=0;
 
 
     // Bought product
@@ -24,43 +23,46 @@ contract BuyerPlatform {
     // delivered product
      mapping(uint => Product) ProductDelivered;
      uint8 ProductDeliverCount=0;
+   
 
-
-    function BuyProduct(string Name) constant returns(string, uint, string) {
+   //ORDER PLACING
+    function BuyProduct(string Name, uint Quantity)  returns(string, uint, string , uint, uint) {
         Product memory newProduct;
         newProduct.Name = Name;
-        newProduct.Quantity = 1;
-        newProduct.Status = "PLACED";
-        newProduct.Id = ProductBoughtCount;//now();
-        ProductBought[ProductBoughtCount] = newProduct;    
-        ProductboughtCount++;
-        return (newProduct.Name,newProduct.Id,newProduct.Status);
+        newProduct.Quantity = Quantity;
+        newProduct.Status = "ORDERPLACED";
+        newProduct.Id = ProductBroughtCount;
+        newProduct.Timestamp = block.timestamp;
+        ProductBrought[newProduct.Id] = newProduct;    
+        ProductBroughtCount++;
+        return (newProduct.Name,newProduct.Id,newProduct.Status, block.number,ProductBroughtCount);
     }
 
-    // Shipment of product
-    function shippedProduct(uint ProductId) constant returns(string) {
-        var newProduct = ProductBought[ProductId];
-        newProduct.Status = "SHIPPED";
+    // SHIPPING OF PRODUCT
+    function shipProduct(uint ProductId)  returns(string, uint, string , uint, uint) {
+        var newProduct = ProductBrought[ProductId];
+        newProduct.Status = "ORDERSHIPPED";
         ProductShipped[ProductShippedCount] = newProduct;
         ProductShippedCount++;
-        return newProduct.Name;
+        return (newProduct.Name,newProduct.Id,newProduct.Status, block.number,ProductShippedCount);
 
     }
-
-    function DeliverProduct(uint ProductId) {
-        var newProduct = ProductBought[ProductId];
+    //DELIVERY OF PRODUCT
+    function DeliverProduct(uint ProductId) returns(string, uint, string , uint, uint) {
+        var newProduct = ProductBrought[ProductId];
         newProduct.Status = "DELIVERED";
         ProductDelivered[ProductDeliverCount] = newProduct;
         ProductDeliverCount++;
+        return (newProduct.Name,newProduct.Id,newProduct.Status, block.number,ProductDeliverCount);
+    
+    }
+
+    function GetBroughtProductCount() constant returns(uint) {
+        return ProductBroughtCount;
         
     }
 
-    function GetRegProductCount() constant returns(uint) {
-        return ProductBoughtCount;
-        
-    }
-
-    function GetSoldProductCount() constant returns(uint) {
+    function GetShippedProductCount() constant returns(uint) {
         return ProductShippedCount;
         
     }
@@ -69,7 +71,7 @@ contract BuyerPlatform {
         return ProductDeliverCount;
         
     }
-    function GetProduct(uint ProductId) constant returns (string, uint) {
-        return (ProductBought[ProductId].Name, ProductBought[ProductId].Id);
+    function GetProduct(uint ProductId) constant returns (string) {
+        return ProductBrought[ProductId].Name;
     }
 }

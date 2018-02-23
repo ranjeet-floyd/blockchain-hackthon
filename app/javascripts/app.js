@@ -137,7 +137,7 @@ sellProduct: function(){
   });
 },
 
-getProduct: function(){
+getSellerProduct: function(){
   var contractAddress = document.getElementById("sellerContractAddress").value;
   var productId = document.getElementById("productId").value;
   var deployedSellerplatformContract = sellerplatformContract.at(contractAddress);
@@ -182,21 +182,21 @@ createbuyerContract: function(){
 },
 
 BuyProduct: function(){
-  var contractAddress = document.getElementById("sellerContractAddress").value;
+  var contractAddress = document.getElementById("buyerContractAddress").value;
   console.log(contractAddress);
 
   var productName = document.getElementById("productName").value;
   console.log(productName);
   var quantity = document.getElementById("quantity").value;
   var deployedSellerplatformContract = buyerplatformContract.at(contractAddress);
-  deployedSellerplatformContract.BuyProduct(productName, function(error,x) {
+  deployedSellerplatformContract.BuyProduct(productName,quantity, function(error,x) {
     console.log(x);
     document.getElementById("count").value = x;
   });
 },
 
 shipProduct: function(){
-  var contractAddress = document.getElementById("sellerContractAddress").value;
+  var contractAddress = document.getElementById("buyerContractAddress").value;
   console.log(contractAddress);
   var productId = document.getElementById("productId").value;
   var deployedSellerplatformContract = buyerplatformContract.at(contractAddress);
@@ -208,7 +208,7 @@ shipProduct: function(){
 },
 
 DeliverProduct: function(){
-  var contractAddress = document.getElementById("sellerContractAddress").value;
+  var contractAddress = document.getElementById("buyerContractAddress").value;
   console.log(contractAddress);
   var productId = document.getElementById("productId").value;
   var deployedSellerplatformContract = buyerplatformContract.at(contractAddress);
@@ -219,8 +219,8 @@ DeliverProduct: function(){
   });
 },
 
-getProduct: function(){
-  var contractAddress = document.getElementById("sellerContractAddress").value;
+getBuyerProduct: function(){
+  var contractAddress = document.getElementById("buyerContractAddress").value;
   var productId = document.getElementById("productId").value;
   var deployedSellerplatformContract = buyerplatformContract.at(contractAddress);
 
@@ -232,7 +232,7 @@ getProduct: function(){
 },
 
 getbroughtProductCount: function(){
-  var contractAddress = document.getElementById("sellerContractAddress").value;
+  var contractAddress = document.getElementById("buyerContractAddress").value;
   var deployedSellerplatformContract = buyerplatformContract.at(contractAddress);
 
   deployedSellerplatformContract.GetBroughtProductCount(function(error,x) {

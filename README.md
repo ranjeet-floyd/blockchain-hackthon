@@ -59,9 +59,9 @@ Install Solidity Compiler
         https://github.com/ConsenSys/Tokens
 
 # blockchain-hackthon
-Build trusted platform using blockchain
+    Build trusted platform using blockchain
 
-# Motive | Build E-commerce platform using BlockChain technology.
-1. Buy using Etherium Smart contracts.
-2. Sell on Platform using Etherium Smart contracts.
+### Motive | Build E-commerce platform using BlockChain technology.
+    1. Buy using Etherium Smart contracts.
+    2. Sell on Platform using Etherium Smart contracts.
   

@@ -1,7 +1,6 @@
 # Let build chain 
 
-    Application for tracking product in secure and tamper free way. 
-    Smart contract for application users.
+    Platform for selling and buying product using Etherium Smart contracts.
 
 
 Init sample package [ref: https://github.com/trufflesuite/truffle-init-webpack] 
@@ -58,3 +57,11 @@ Install Solidity Compiler
     Token 
 
         https://github.com/ConsenSys/Tokens
+
+# blockchain-hackthon
+Build trusted platform using blockchain
+
+1. Buyer Service contacts
+  a. If buyer bought more than 10 items.. then coupon.
+  b. Prime membership
+  

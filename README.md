@@ -61,7 +61,7 @@ Install Solidity Compiler
 # blockchain-hackthon
 Build trusted platform using blockchain
 
-1. Buyer Service contacts
-  a. If buyer bought more than 10 items.. then coupon.
-  b. Prime membership
+# Motive | Build E-commerce platform using BlockChain technology.
+1. Buy using Etherium Smart contracts.
+2. Sell on Platform using Etherium Smart contracts.
   
